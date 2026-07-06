@@ -6,17 +6,8 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:#ffb300;
-
+margin:0;
+background:#f5f7fb;
 }
 
 .container{
@@ -383,7 +374,7 @@ box-shadow:0 10px 20px rgba(255,152,0,.4);
 
 .dashboard{
 display:flex;
-height:100vh;
+min-height:100vh;
 background:#f5f7fb;
 }
 
@@ -419,6 +410,7 @@ background:#ff9800;
 .main{
 flex:1;
 padding:30px;
+overflow-y:auto;
 }
 
 .cards{
