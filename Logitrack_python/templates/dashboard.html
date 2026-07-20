@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | LogiTrack</title>
+
+<link rel="stylesheet" href="../static/css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>📦 LogiTrack</h2>
+
+        <a href="#"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+        <a href="#"><i class="fa-solid fa-box"></i> Add Parcel</a>
+
+        <a href="#"><i class="fa-solid fa-location-dot"></i> Track Parcel</a>
+
+        <a href="#"><i class="fa-solid fa-list"></i> Parcel List</a>
+
+        <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <h1>Welcome 👋  </h1>
+
+        <p>Parcel Tracking & Delivery Status Notification System</p>
+
+        <div class="cards">
+
+            <div class="card-box">
+
+                <i class="fa-solid fa-box"></i>
+
+                <h2>120</h2>
+
+                <p>Total Parcels</p>
+
+            </div>
+
+            <div class="card-box green">
+
+                <i class="fa-solid fa-check"></i>
+
+                <h2>85</h2>
+
+                <p>Delivered</p>
+
+            </div>
+
+            <div class="card-box orange">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <h2>20</h2>
+
+                <p>In Transit</p>
+
+            </div>
+
+            <div class="card-box red">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <h2>15</h2>
+
+                <p>Pending</p>
+
+            </div>
+
+        </div>
+
+        <div class="table-section">
+
+            <h2>Recent Parcels</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Tracking ID</th>
+
+                    <th>Sender</th>
+
+                    <th>Receiver</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>LG10231</td>
+
+                    <td>Ankita</td>
+
+                    <td>Rahul</td>
+
+                    <td><span class="status delivered">Delivered</span></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>LG10232</td>
+
+                    <td>Riya</td>
+
+                    <td>Amit</td>
+
+                    <td><span class="status transit">In Transit</span></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>LG10233</td>
+
+                    <td>Neha</td>
+
+                    <td>Rohit</td>
+
+                    <td><span class="status pending">Pending</span></td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
