@@ -159,14 +159,37 @@ http://127.0.0.1:5000
 ## 📂 Project Structure
 
 ```text
-LogiTrack/
-│── manage.py
-│── requirements.txt
-│── LogiTrack/
-│── parcels/
-│── templates/
-│── static/
-│── media/
+LogiTrack_python/
+│
+├── static/
+│ ├── css/
+│ │ └── style.css
+│ │
+│ ├── images/
+│ │ ├── truck.gif
+│ │ └── truck.png
+│ │
+│ └── js/
+│
+├── templates/
+│ ├── index.html
+│ ├── login.html
+│ ├── register.html
+│ ├── dashboard.html
+│ ├── add_parcel.html
+│ └── tracking_result.html
+│
+├── mongodb/
+│
+├── app.py
+├── database.py
+├── models.py
+├── notification.py
+├── utils.py
+│
+├── requirements.txt
+├── requirements.py
+└── venv/
 ```
 
 ---
