@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid black;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            background:#4CAF50;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>All Parcels</h2>
+
+<table>
+
+<tr>
+
+<th>Tracking ID</th>
+<th>Sender</th>
+<th>Receiver</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+{% for parcel in parcels %}
+
+<tr>
+
+<td>{{parcel.tracking_id}}</td>
+
+<td>{{parcel.sender}}</td>
+
+<td>{{parcel.receiver}}</td>
+
+<td>{{ parcel.status }}</td>
+
+<td>
+    <form action="/update_status" method="POST">
+
+        <input type="hidden"
+               name="tracking_id"
+               value="{{ parcel.tracking_id }}">
+
+        <select name="status">
+
+            <option>Booked</option>
+
+            <option>In Transit</option>
+
+            <option>Out for Delivery</option>
+
+            <option>Delivered</option>
+
+        </select>
+
+        <button type="submit">
+            Update
+        </button>
+
+    </form>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

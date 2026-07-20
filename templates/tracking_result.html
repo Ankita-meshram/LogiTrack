@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tracking Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<div class="top">
+
+<h2>Parcel Details</h2>
+
+<p>Tracking Information</p>
+
+</div>
+
+<div class="details">
+
+<p><b>Tracking ID :</b> {{ parcel.tracking_id }}</p>
+
+<p><b>Sender :</b> {{ parcel.sender }}</p>
+
+<p><b>Receiver :</b> {{ parcel.receiver }}</p>
+
+<p><b>Phone :</b> {{ parcel.phone }}</p>
+
+<p><b>Address :</b> {{ parcel.address }}</p>
+
+<p><b>Pincode :</b> {{ parcel.pincode }}</p>
+
+<p><b>Status :</b>
+
+<span class="status">{{ parcel.status }}</span>
+
+</p>
+
+<a href="/track">
+
+<button class="signupBtn">
+
+Track Another Parcel
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
