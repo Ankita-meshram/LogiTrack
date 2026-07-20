@@ -2,6 +2,7 @@
 
 **LogiTrack** is a Parcel Tracking & Delivery Status Notification System developed using **Python, Django, and MongoDB**. The system allows users to book parcels, track deliveries using a unique tracking ID, and receive delivery status updates. Administrators can manage parcels and update delivery statuses through an admin dashboard.
 
+---
 
 ## 📌 Project Information
 
