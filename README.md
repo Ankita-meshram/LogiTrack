@@ -108,26 +108,52 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Run the Project
+# 🚀 How to Run the Project
+Step 1: Install Python :
 
-```bash
-python manage.py makemigrations
+Download and install Python 3.x from the official website.
+
+After installation, verify it:
+```
+python --version
 ```
 
-```bash
-python manage.py migrate
+Step 2: Clone the Repository :
+```
+git clone https://github.com/Ankita-meshram/LogiTrack.git
+cd Logitrack_python
 ```
 
-```bash
-python manage.py runserver
+Step 3: Create a Virtual Environment :
+```
+python -m venv venv
 ```
 
-Open your browser:
-
-```text
-http://127.0.0.1:8000/
+Activate it on Windows:
+```
+venv\Scripts\activate
 ```
 
+Step 4: Install Required Packages :
+```
+pip install flask
+pip install pymongo
+pip install flask-login
+pip install python-dotenv
+```
+Save all installed packages:
+```
+pip freeze > requirements.txt
+```
+
+Step 5: Run the Application :
+```
+python app.py
+```
+Open your browser and visit:
+```
+http://127.0.0.1:5000
+```
 ---
 
 ## 📂 Project Structure
