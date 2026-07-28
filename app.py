@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 from database import parcels, users
 from models import Parcel
 from notification import NotificationEngine
 from utils import valid_phone, valid_pincode
 
 app = Flask(__name__)
+app.secret_key = "logitrack123"
 
 @app.route("/")
 def home():
@@ -24,13 +25,10 @@ def login():
         })
 
         if user:
-            return """
-            <h2>Login Successful!</h2>
+            session["username"] = username
 
-            <a href="/dashboard">
-                Go to Dashboard
-            </a>
-            """
+            return redirect(url_for("dashboard"))
+        
 
         else:
             return """
@@ -129,11 +127,26 @@ def track_parcel():
 @app.route("/dashboard")
 def dashboard():
 
+    if "username" not in session:
+        return redirect(url_for("login"))
+
     all_parcels = list(parcels.find())
+
+    total_parcels = parcels.count_documents({})
+
+    pending = parcels.count_documents({"status": "Pending"})
+
+    in_transit = parcels.count_documents({"status": "In Transit"})
+
+    delivered = parcels.count_documents({"status": "Delivered"})
 
     return render_template(
         "dashboard.html",
-        parcels=all_parcels
+        parcels=all_parcels,
+        total_parcels=total_parcels,
+        pending=pending,
+        in_transit=in_transit,
+        delivered=delivered
     )
 
 @app.route("/update_status", methods=["POST"])
@@ -146,20 +159,68 @@ def update_status():
         {"tracking_id": tracking_id},
         {"$set": {"status": status}}
     )
-
     parcel = parcels.find_one({"tracking_id": tracking_id})
 
-    NotificationEngine.send_notification(
+    if parcel:
+
+        NotificationEngine.send_notification(
         parcel["receiver"],
         tracking_id,
         status
     )
+
+    return redirect(url_for("dashboard"))
+
 
     return """
     <h2>Status Updated Successfully!</h2>
 
     <a href="/dashboard">Back to Dashboard</a>
     """
+
+@app.route("/delete_parcel/<tracking_id>")
+def delete_parcel(tracking_id):
+
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    parcels.delete_one({"tracking_id": tracking_id})
+
+    return redirect(url_for("dashboard"))
+
+@app.route("/admin_login", methods=["GET", "POST"])
+def admin_login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == "anju" and password == "anju123":
+
+            session["admin"] = True
+
+            return redirect(url_for("dashboard"))
+
+        else:
+
+            return """
+            <h2>Invalid Admin Username or Password</h2>
+
+            <a href="/admin_login">
+                Try Again
+            </a>
+            """
+
+    return render_template("admin_login.html")
+
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect(url_for("login"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

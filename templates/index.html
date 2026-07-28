@@ -7,47 +7,121 @@
 
 <title>LogiTrack</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
 </head>
 
-<body>
+<body class="home-page">
 
-<div class="container">
+<!-- Navbar -->
 
-<div class="card">
+<nav class="navbar">
 
-<img src="../static/images/truck.gif" class="gif">
+<div class="logo">
+📦 LogiTrack
+</div>
 
-<h2>Welcome</h2>
+<div class="nav-links">
 
-<h3>LogiTrack</h3>
+<a href="{{ url_for('login') }}">Login</a>
+
+<a href="{{ url_for('register') }}">Signup</a>
+
+<a href="{{ url_for('admin_login') }}">Admin Login</a>
+
+</div>
+
+</nav>
+
+<!-- Hero Section -->
+
+<div class="home-container">
+
+<img src="{{ url_for('static', filename='images/truck.gif') }}"
+class="home-truck">
+
+<h1>Fast & Secure Parcel Delivery</h1>
 
 <p>
-Parcel Tracking & Delivery Status Notification System
+
+Track your parcel in real time.<br>
+
+Book parcels easily and receive delivery notifications.
+
 </p>
 
-<a href="{{ url_for('login') }}">
-<button class="btn login-btn">
-Login
+<div class="home-buttons">
+
+<a href="{{ url_for('add_parcel') }}">
+
+<button class="book-btn">
+
+📦 Book Parcel
+
 </button>
+
 </a>
 
-<a href="{{ url_for('register') }}">
-<button class="btn signup-btn">
-Signup
+<a href="{{ url_for('track_page') }}">
+
+<button class="track-btn">
+
+🔍 Track Parcel
+
 </button>
+
 </a>
 
 </div>
 
 </div>
+
+<!-- Features -->
+
+<div class="features">
+
+<div class="feature-card">
+
+<h3>🚚 Fast Delivery</h3>
+
+<p>Quick parcel booking and delivery process.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>📍 Live Tracking</h3>
+
+<p>Track your parcel anytime using Tracking ID.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>🔔 Notifications</h3>
+
+<p>Get delivery status notifications instantly.</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>🔒 Secure Service</h3>
+
+<p>Your parcel information is safely stored.</p>
+
+</div>
+
+</div>
+
+<footer>
+
+2026 LogiTrack | Parcel Tracking & Delivery Status Notification System
+
+</footer>
 
 </body>
-
 </html>
