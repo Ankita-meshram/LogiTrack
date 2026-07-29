@@ -160,26 +160,56 @@ http://127.0.0.1:5000
 
 ```text
 LogiTrack/
-│── manage.py
-│── requirements.txt
-│── LogiTrack/
-│── parcels/
-│── templates/
-│── static/
-│── media/
-```
-
+│
+├── static/
+│   ├── css/
+│   ├── images/
+│   └── js/
+│
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── add_parcel.html
+|   ├── admin_login.html
+|   ├── tracking_result.html
+│   └── track.html
+│
+├── database.py
+├── app.py
+├── requirements.txt
+├── models.py
+├── notification.py
+└── utils.py
 ---
 
-## 📡 APIs
+# 📸 Screenshots
+### Home Page
 
-* POST /book-parcel/
-* GET /track/<tracking_id>/
-* GET /api/parcels/
-* PUT /api/update-status/
-* DELETE /api/delete-parcel/
+![Home Page](screenshots/home.png)
 
----
+### Login Page
+
+![Login Page](screenshots/login.png)
+
+### Register Page
+
+![Register Page](screenshots/register.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Add Parcel
+
+![Add Parcel](screenshots/add_parcel.png)
+
+### Track Parcel
+
+![Tracking](screenshots/tracking.png)
+
+
 
 ## 📈 Future Improvements
 
