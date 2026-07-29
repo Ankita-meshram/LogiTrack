@@ -187,30 +187,47 @@ LogiTrack/
 ## 📸 Screenshots
 ### Home Page
 
-![Home Page](screenshots/home.png)<img width="941" height="440" alt="image" src="https://github.com/user-attachments/assets/841d551c-67bf-41a5-95da-22155857aa90" />
+<img width="941" height="440" alt="image" src="https://github.com/user-attachments/assets/841d551c-67bf-41a5-95da-22155857aa90" />
 <img width="937" height="439" alt="image" src="https://github.com/user-attachments/assets/8f10ab7a-c486-4317-9fbb-b4dbdb76d842" />
-
 
 
 ### Login Page
 
-![Login Page](screenshots/login.png)
+<img width="946" height="431" alt="image" src="https://github.com/user-attachments/assets/22acba76-71c0-47bc-99f6-489cc105eac9" />
+
 
 ### Register Page
 
-![Register Page](screenshots/register.png)
+<img width="931" height="437" alt="image" src="https://github.com/user-attachments/assets/2271597e-38a3-4273-88fb-276357ee592c" />
 
-### Dashboard
+### Admin Login Page
 
-![Dashboard](screenshots/dashboard.png)
+<img width="938" height="427" alt="image" src="https://github.com/user-attachments/assets/c969646d-f4fe-488c-9726-baf2264ff132" />
 
-### Add Parcel
+### Admin Dashboard
 
-![Add Parcel](screenshots/add_parcel.png)
+<img width="931" height="431" alt="image" src="https://github.com/user-attachments/assets/0e704590-3936-49f4-95cd-ebd5e0e28b8b" />
+
+
+### Book Parcel
+
+<img width="931" height="433" alt="image" src="https://github.com/user-attachments/assets/b26399d9-3e62-4874-b768-89f710154ed2" />
+
 
 ### Track Parcel
 
-![Tracking](screenshots/tracking.png)
+<img width="935" height="423" alt="image" src="https://github.com/user-attachments/assets/8047a54a-3efe-4f13-9875-aa7e0c5c7f62" />
+<img width="940" height="430" alt="image" src="https://github.com/user-attachments/assets/d79d4d13-d1db-4484-a8fc-5fde715f1e47" />
+
+### MongoDB Database
+
+#### 1. Book Parcel Database
+
+<img width="950" height="494" alt="image" src="https://github.com/user-attachments/assets/364d9981-4464-4ab0-898c-a8170d5cdba9" />
+
+#### 2. User Database
+
+<img width="939" height="453" alt="image" src="https://github.com/user-attachments/assets/bd20bbcf-8759-433d-a60d-74836361c9e2" />
 
 
 
