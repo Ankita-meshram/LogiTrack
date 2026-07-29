@@ -182,12 +182,15 @@ LogiTrack/
 ├── models.py
 ├── notification.py
 └── utils.py
----
+```
 
-# 📸 Screenshots
+## 📸 Screenshots
 ### Home Page
 
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/home.png)<img width="941" height="440" alt="image" src="https://github.com/user-attachments/assets/841d551c-67bf-41a5-95da-22155857aa90" />
+<img width="937" height="439" alt="image" src="https://github.com/user-attachments/assets/8f10ab7a-c486-4317-9fbb-b4dbdb76d842" />
+
+
 
 ### Login Page
 
@@ -221,14 +224,13 @@ LogiTrack/
 * Driver Management
 * Delivery Analytics Dashboard
 
----
 
 ## 👩‍💻 Author
 
 **Ankita Meshram**
 
+---
 GitHub: https://github.com/Ankita-meshram
-
 ---
 
 ## 📄 License
