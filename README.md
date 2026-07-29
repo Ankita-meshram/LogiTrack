@@ -245,10 +245,9 @@ LogiTrack/
 ## 👩‍💻 Author
 
 **Ankita Meshram**
-
----
+```
 GitHub: https://github.com/Ankita-meshram
----
+```
 
 ## 📄 License
 
