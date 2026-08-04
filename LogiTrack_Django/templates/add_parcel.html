@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Parcel</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="register-card">
+
+    <div class="top">
+        <h2>Book Parcel</h2>
+        <p>Fill Parcel Information</p>
+    </div>
+
+    <form method="POST" class="form">
+        {% csrf_token %}
+
+        {{ form.sender_name }}
+        {{ form.sender_phone }}
+        {{ form.sender_address }}
+
+        {{ form.receiver_name }}
+        {{ form.receiver_phone }}
+        {{ form.receiver_address }}
+
+        {{ form.parcel_type }}
+        {{ form.weight }}
+
+        <button type="submit" class="signupBtn">
+            📦 Book Parcel
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tracking Result</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+<div class="top">
+
+<h2>Parcel Details</h2>
+
+</div>
+
+<div class="details">
+
+{% if parcel %}
+
+<p><b>Tracking ID:</b> {{ parcel.tracking_id }}</p>
+
+<p><b>Sender:</b> {{ parcel.sender_name }}</p>
+
+<p><b>Receiver:</b> {{ parcel.receiver_name }}</p>
+
+<p><b>Status:</b>
+
+<span class="status">
+
+{{ parcel.status }}
+
+</span>
+
+</p>
+
+<p><b>Booking Date:</b> {{ parcel.booking_date }}</p>
+
+{% else %}
+
+<h3 style="color:red;">
+
+{{ error }}
+
+</h3>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+</html>

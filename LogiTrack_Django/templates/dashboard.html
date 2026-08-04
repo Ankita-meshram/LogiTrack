@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+
+<h2>📦 LogiTrack</h2>
+
+<a href="/">Home</a>
+
+<a href="{% url 'logout' %}">
+    <button class="track-btn">
+        Logout
+    </button>
+</a>
+
+<a href="/book/">Book Parcel</a>
+
+<a href="/track/">Track Parcel</a>
+
+</div>
+
+<div class="main">
+
+<h2>All Parcels</h2>
+
+<div class="cards">
+
+    <div class="card-box">
+        <h3>Total Parcels</h3>
+        <h2>{{ total }}</h2>
+    </div>
+
+    <div class="card-box">
+        <h3>Booked</h3>
+        <h2>{{ booked }}</h2>
+    </div>
+
+    <div class="card-box">
+        <h3>In Transit</h3>
+        <h2>{{ transit }}</h2>
+    </div>
+
+    <div class="card-box">
+        <h3>Delivered</h3>
+        <h2>{{ delivered }}</h2>
+    </div>
+
+</div>
+<form method="GET" style="margin:20px 0;">
+
+    <input
+        type="text"
+        name="q"
+        placeholder="Search Tracking ID">
+
+    <button class="signupBtn"
+            style="width:150px;height:45px;">
+        Search
+    </button>
+
+</form>
+
+<form method="GET" style="margin-bottom:20px;">
+
+    <input
+        type="text"
+        name="q"
+        placeholder="Search Tracking ID..."
+        value="{{ request.GET.q }}"
+        style="padding:10px;width:300px;border-radius:8px;border:1px solid #ccc;">
+
+    <button
+        type="submit"
+        class="signupBtn"
+        style="width:120px;height:42px;">
+        Search
+    </button>
+
+</form>
+
+<div class="table-section">
+
+<table>
+
+<tr>
+
+<th>Tracking ID</th>
+
+<th>Sender</th>
+
+<th>Receiver</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+{% for parcel in parcels %}
+
+<tr>
+
+<td>{{ parcel.tracking_id }}</td>
+
+<td>{{ parcel.sender_name }}</td>
+
+<td>{{ parcel.receiver_name }}</td>
+
+<td>
+
+<form method="POST" action="{% url 'update_status' parcel.id %}">
+
+{% csrf_token %}
+
+<select name="status">
+
+<option value="Booked"
+{% if parcel.status == "Booked" %}selected{% endif %}>
+Booked
+</option>
+
+<option value="In Transit"
+{% if parcel.status == "In Transit" %}selected{% endif %}>
+In Transit
+</option>
+
+<option value="Out for Delivery"
+{% if parcel.status == "Out for Delivery" %}selected{% endif %}>
+Out for Delivery
+</option>
+
+<option value="Delivered"
+{% if parcel.status == "Delivered" %}selected{% endif %}>
+Delivered
+</option>
+
+</select>
+
+<button class="signupBtn" style="width:120px;height:40px;margin-top:10px;">
+Update
+</button>
+
+</form>
+
+</td>
+
+<td>{{ parcel.booking_date }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
