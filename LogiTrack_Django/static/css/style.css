@@ -331,6 +331,14 @@ color:#ff9800;
 
 /* ================= Register Page ================= */
 
+.login-card,
+.register-card{
+
+    width:400px;
+    margin:100px auto;
+
+}
+
 .register-card{
 
 width:380px;
@@ -890,4 +898,35 @@ footer{
 .details h2{
     font-size:32px;
     letter-spacing:2px;
+}
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:auto;
+    max-height:500px;
+}
+
+
+.table-section table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+
+.table-section th,
+.table-section td{
+    padding:12px;
+    white-space:nowrap;
+}
+
+.table-scroll{
+    overflow-x:auto;
+    max-height:500px;
+    overflow-y:auto;
+}
+
+table{
+    width:100%;
+    min-width:900px;
 }

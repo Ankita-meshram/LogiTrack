@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
 
 <title>Login | LogiTrack</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -17,9 +18,12 @@
 
 <div class="top">
 
-<a href="{{ url_for('home') }}">
+{% url 'home' %}
+<a href="{% url 'home' %}">
 <i class="fa-solid fa-arrow-left"></i>
 </a>
+
+{% load static %}
 
 <h2>Login</h2>
 
@@ -27,7 +31,8 @@
 
 </div>
 
-<form class="form" action="{{ url_for('login') }}" method="POST">
+<form action="{% url 'login' %}" method="POST">
+{% csrf_token %}
 
     <input type="text"
            name="username"
@@ -52,9 +57,7 @@
 <p class="signup">
 Don't have an account?
 
-<a href="{{ url_for('register') }}">
-Signup
-</a>
+<a href="{% url 'signup' %}">Sign up</a>
 
 </p>
 

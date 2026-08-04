@@ -7,3 +7,4 @@ client = MongoClient(
 db = client["logitrack_db"]
 
 parcel_collection = db["parcels"]
+user_collection = db["users"]

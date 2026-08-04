@@ -19,11 +19,7 @@
 
 <a href="/">Home</a>
 
-<a href="{% url 'logout' %}">
-    <button class="track-btn">
-        Logout
-    </button>
-</a>
+<a href="{% url 'logout' %}">Logout</a>
 
 <a href="/book/">Book Parcel</a>
 
@@ -92,6 +88,8 @@
 
 <div class="table-section">
 
+<div class="table-scroll">
+
 <table>
 
 <tr>
@@ -105,6 +103,8 @@
 <th>Status</th>
 
 <th>Date</th>
+
+<th>Action</th>
 
 </tr>
 
@@ -158,11 +158,26 @@ Update
 
 <td>{{ parcel.booking_date }}</td>
 
+<td>
+
+<a href="{% url 'delete_parcel' parcel.id %}"
+onclick="return confirm('Are you sure you want to delete?')">
+
+<button class="track-btn">
+Delete
+</button>
+
+</a>
+
+</td>
+
 </tr>
 
 {% endfor %}
 
 </table>
+
+</div>
 
 </div>
 

@@ -5,10 +5,11 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ParcelSerializer
-from .mongodb import parcel_collection
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .mongodb import parcel_collection,user_collection
 
 # Home Page
 def home(request):
@@ -26,18 +27,20 @@ def add_parcel(request):
 
             parcel = form.save()
 
-            parcel_collection.insert_one({
-                "tracking_id": parcel.tracking_id,
-                "sender_name": parcel.sender_name,
-                "sender_phone": parcel.sender_phone,
-                "sender_address": parcel.sender_address,
-                "receiver_name": parcel.receiver_name,
-                "receiver_phone": parcel.receiver_phone,
-                "receiver_address": parcel.receiver_address,
-                "parcel_type": parcel.parcel_type,
-                "weight": parcel.weight,
-                "status": parcel.status,
-            })
+            if parcel_collection:
+                parcel_collection.insert_one({
+                    "tracking_id": parcel.tracking_id,
+                    "sender_name": parcel.sender_name,
+                    "sender_phone": parcel.sender_phone,
+                    "sender_address": parcel.sender_address,
+                    "receiver_name": parcel.receiver_name,
+                    "receiver_phone": parcel.receiver_phone,
+                    "receiver_address": parcel.receiver_address,
+                    "parcel_type": parcel.parcel_type,
+                    "weight": parcel.weight,
+                    "status": parcel.status,
+                    "booking_date": parcel.booking_date.isoformat(),
+                })
 
             return render(request, "success.html", {
                 "tracking_id": parcel.tracking_id
@@ -49,6 +52,16 @@ def add_parcel(request):
     return render(request, "add_parcel.html", {
         "form": form
     })
+
+# delete parcel
+@login_required(login_url='admin_login')
+def delete_parcel(request, id):
+
+    parcel = get_object_or_404(Parcel, id=id)
+
+    parcel.delete()
+
+    return redirect("dashboard")
 
 # Tracking Page
 def track(request):
@@ -131,38 +144,90 @@ def admin_login(request):
             password=password
         )
 
-        if user is not None:
+        if user is not None and user.is_staff:
+
             login(request, user)
             return redirect("dashboard")
 
-        return render(request, "admin_login.html", {
-            "error": "Invalid Username or Password"
-        })
+        else:
+            messages.error(
+                request,
+                "Only Admin can login"
+            )
 
-    return render(request, "admin_login.html")
+
+    return render(request,"admin_login.html")
+
 
 def admin_logout(request):
     logout(request)
     return redirect("home")
 
-def admin_login(request):
+
+def signup(request):
+
+    if request.method=="POST":
+
+        username=request.POST.get("username")
+        email=request.POST.get("email")
+        password=request.POST.get("password")
+
+
+        User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+
+
+        if user_collection:
+
+            user_collection.insert_one({
+                "username":username,
+                "email":email
+            })
+
+
+        return redirect("login")
+
+
+    return render(request,"signup.html")
+
+
+def user_login(request):
 
     if request.method == "POST":
 
         username = request.POST.get("username")
         password = request.POST.get("password")
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(
+            username=username,
+            password=password
+        )
 
-        if user is not None:
+        if user:
+
             login(request, user)
-            return redirect("dashboard")
+
+            return redirect("home")
 
         else:
-            messages.error(request, "Invalid Username or Password")
 
-    return render(request, "admin_login.html")
+            messages.error(
+                request,
+                "Invalid Username or Password"
+            )
 
-def logout_view(request):
-    logout(request)
-    return redirect("home")
+
+    return render(request,"login.html")
+
+
+@login_required(login_url='admin_login')
+def delete_parcel(request, id):
+
+    parcel = get_object_or_404(Parcel, id=id)
+
+    parcel.delete()
+
+    return redirect("dashboard")
