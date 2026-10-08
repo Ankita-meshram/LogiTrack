@@ -1,115 +1,532 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LogiTrack</title>
+    <title>LogiTrack</title>
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f7f8fa;
+            color: #222;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            width: 96%;
+            margin: 20px auto 0;
+
+            background: #ff9800;
+
+            padding: 14px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-radius: 10px 10px 0 0;
+        }
+
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            width: 96%;
+            margin: auto;
+
+            min-height: 410px;
+
+            background: #f7f8fa;
+
+            text-align: center;
+
+            padding: 30px 20px 45px;
+
+            border-radius: 0 0 8px 8px;
+        }
+
+
+        .truck-image {
+            width: 155px;
+            height: 155px;
+
+            object-fit: contain;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hero p {
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            color: #777;
+        }
+
+
+        /* ================= USER ACTIONS ================= */
+
+        .user-actions {
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+        }
+
+
+        .action-btn {
+            padding: 10px 22px;
+
+            border-radius: 25px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .book-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+
+        .track-btn {
+            background: #111;
+            color: white;
+        }
+
+
+        .dashboard-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            width: 90%;
+
+            margin: 0 auto 30px;
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .feature-card {
+            background: white;
+
+            padding: 20px 18px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+            min-height: 100px;
+        }
+
+
+        .feature-card h3 {
+            color: #ff9800;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .feature-card p {
+            color: #777;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                width: 94%;
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .user-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-btn {
+                width: 160px;
+            }
+        }
+
+    </style>
 
 </head>
 
-<body class="home-page">
 
-<!-- Navbar -->
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
 <nav class="navbar">
 
-<div class="logo">
-📦 LogiTrack
-</div>
 
-<div class="nav-links">
+    <div class="logo">
+        📦 LogiTrack
+    </div>
 
-<a href="{% url 'login' %}">Login</a>
 
-<a href="{% url 'signup' %}">Signup</a>
+    <div class="nav-links">
 
-<a href="{% url 'admin_login' %}">Admin Login</a>
 
-</div>
+        {% if user.is_authenticated %}
+
+
+            {% if user.is_staff %}
+
+                <!-- ADMIN NAVBAR -->
+
+                <a href="/track/">
+                    Track Parcel
+                </a>
+
+                <a href="/dashboard/">
+                    Dashboard
+                </a>
+
+                <a href="/logout/">
+                    Logout
+                </a>
+
+
+            {% else %}
+
+                <!-- NORMAL USER NAVBAR -->
+
+                <a href="/book/">
+                    Book Parcel
+                </a>
+
+                <a href="/track/">
+                    Track Parcel
+                </a>
+
+                <a href="/logout/">
+                    Logout
+                </a>
+
+
+            {% endif %}
+
+
+        {% else %}
+
+            <!-- VISITOR NAVBAR -->
+
+            <a href="/login/">
+                Login
+            </a>
+
+            <a href="/signup/">
+                Signup
+            </a>
+
+            <a href="/admin-login/">
+                Admin Login
+            </a>
+
+
+        {% endif %}
+
+
+    </div>
 
 </nav>
 
-<!-- Hero Section -->
 
-<div class="home-container">
 
-<img src="{% static 'images/truck.gif' %}" class="home-truck">
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
 
-<h1>Fast & Secure Parcel Delivery</h1>
+<section class="hero">
 
-<p>
-Track your parcel in real time.<br>
-Book parcels easily and receive delivery notifications.
-</p>
 
-<div class="home-buttons">
+    <img
+        src="{% static 'images/truck.gif' %}"
+        alt="LogiTrack Delivery"
+        class="truck-image"
+    >
 
-<a href="{% url 'add_parcel' %}">
 
-<button class="book-btn">
-📦 Book Parcel
-</button>
+    <h1>
+        Fast &amp; Secure Parcel Delivery
+    </h1>
 
-</a>
 
-<a href="{% url 'track' %}">
+    <p>
+        Your trusted platform for easy and secure parcel management.<br>
+        Book, track and manage your deliveries with LogiTrack.
+    </p>
 
-<button class="track-btn">
-🔍 Track Parcel
-</button>
 
-</a>
 
-</div>
+    <!-- NORMAL USER -->
 
-</div>
+    {% if user.is_authenticated and not user.is_staff %}
 
-<!-- Features -->
 
-<div class="features">
+        <div class="welcome">
+            Welcome back, <strong>{{ user.username }}</strong>
+        </div>
 
-<div class="feature-card">
 
-<h3>🚚 Fast Delivery</h3>
+        <div class="user-actions">
 
-<p>Quick parcel booking and delivery process.</p>
 
-</div>
+            <a href="/book/" class="action-btn book-btn">
+                📦 Book Parcel
+            </a>
 
-<div class="feature-card">
 
-<h3>📍 Live Tracking</h3>
+            <a href="/track/" class="action-btn track-btn">
+                🔍 Track Parcel
+            </a>
 
-<p>Track your parcel anytime using Tracking ID.</p>
 
-</div>
+        </div>
 
-<div class="feature-card">
 
-<h3>🔔 Notifications</h3>
 
-<p>Get delivery status notifications instantly.</p>
+    <!-- ADMIN -->
 
-</div>
+    {% elif user.is_staff %}
 
-<div class="feature-card">
 
-<h3>🔒 Secure Service</h3>
+        <div class="welcome">
+            Welcome, Administrator
+        </div>
 
-<p>Your parcel information is safely stored.</p>
 
-</div>
+        <div class="user-actions">
 
-</div>
+
+            <a href="/track/" class="action-btn track-btn">
+                🔍 Track Parcel
+            </a>
+
+
+            <a href="/dashboard/" class="action-btn dashboard-btn">
+                📊 Dashboard
+            </a>
+
+
+        </div>
+
+
+
+    <!-- VISITOR -->
+
+    {% else %}
+
+
+        <div class="welcome">
+            Please login or create an account to book and track your parcels.
+        </div>
+
+
+    {% endif %}
+
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="features">
+
+
+    <div class="feature-card">
+
+        <h3>
+            🚚 Fast Delivery
+        </h3>
+
+        <p>
+            Easy and efficient parcel booking process.
+        </p>
+
+    </div>
+
+
+
+    <div class="feature-card">
+
+        <h3>
+            📍 Parcel Tracking
+        </h3>
+
+        <p>
+            Track your parcel using a unique Tracking ID.
+        </p>
+
+    </div>
+
+
+
+    <div class="feature-card">
+
+        <h3>
+            🔔 Delivery Updates
+        </h3>
+
+        <p>
+            Stay informed about your parcel delivery status.
+        </p>
+
+    </div>
+
+
+
+    <div class="feature-card">
+
+        <h3>
+            🔒 Secure Service
+        </h3>
+
+        <p>
+            Your parcel information is securely managed.
+        </p>
+
+    </div>
+
+
+</section>
 
 
 </body>
+
 </html>
