@@ -158,7 +158,8 @@ Example:
 
 * Home Page
   
-  <img width="936" height="439" alt="image" src="https://github.com/user-attachments/assets/0b0642f8-b8cd-4616-9b98-23e00abf90bb" />
+  <img width="950" height="422" alt="image" src="https://github.com/user-attachments/assets/5289c213-2c5c-4a9e-a0a5-e93ec0ccb94f" />
+
 
 * Login Page
   
