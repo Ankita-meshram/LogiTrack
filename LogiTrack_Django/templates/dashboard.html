@@ -1,176 +1,162 @@
+
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Dashboard</title>
+    <title>Admin Dashboard | LogiTrack</title>
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="admin-dashboard-page">
 
-<div class="dashboard">
+    <div class="dashboard">
 
-<div class="sidebar">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h2>📦 Welcome Admin</h2>
 
-<h2>📦 LogiTrack</h2>
+            <a href="/">Home</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </aside>
 
-<a href="/">Home</a>
+        <!-- MAIN CONTENT -->
+        <main class="main">
 
-<a href="{% url 'logout' %}">Logout</a>
+            <h2 class="dashboard-title">All Parcels</h2>
 
-<a href="/book/">Book Parcel</a>
+            <!-- STATISTICS CARDS -->
+            <section class="cards">
 
-<a href="/track/">Track Parcel</a>
+                <div class="card-box">
+                    <h3>Total Parcels</h3>
+                    <h2>{{ total }}</h2>
+                </div>
 
-</div>
+                <div class="card-box">
+                    <h3>Booked</h3>
+                    <h2>{{ booked }}</h2>
+                </div>
 
-<div class="main">
+                <div class="card-box">
+                    <h3>In Transit</h3>
+                    <h2>{{ transit }}</h2>
+                </div>
 
-<h2>All Parcels</h2>
+                <div class="card-box">
+                    <h3>Delivered</h3>
+                    <h2>{{ delivered }}</h2>
+                </div>
 
-<div class="cards">
+            </section>
 
-    <div class="card-box">
-        <h3>Total Parcels</h3>
-        <h2>{{ total }}</h2>
+            <!-- SEARCH -->
+            <form method="GET" class="search-form">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Search Tracking ID..."
+                    value="{{ request.GET.q|default:'' }}"
+                    aria-label="Search Tracking ID"
+                >
+
+                <button type="submit" class="search-btn">
+                    Search
+                </button>
+            </form>
+
+            <!-- PARCEL TABLE -->
+            <section class="table-section">
+
+                <div class="table-scroll">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tracking ID</th>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for parcel in parcels %}
+                            <tr>
+                                <td>{{ parcel.tracking_id }}</td>
+                                <td>{{ parcel.sender_name }}</td>
+                                <td>{{ parcel.receiver_name }}</td>
+
+                                <td>
+                                    <form
+                                        method="POST"
+                                        action="{% url 'update_status' parcel.id %}"
+                                        class="status-form"
+                                    >
+                                        {% csrf_token %}
+
+                                        <select name="status" aria-label="Parcel status">
+                                            <option value="Booked"
+                                                {% if parcel.status == "Booked" %}selected{% endif %}>
+                                                Booked
+                                            </option>
+
+                                            <option value="In Transit"
+                                                {% if parcel.status == "In Transit" %}selected{% endif %}>
+                                                In Transit
+                                            </option>
+
+                                            <option value="Out for Delivery"
+                                                {% if parcel.status == "Out for Delivery" %}selected{% endif %}>
+                                                Out for Delivery
+                                            </option>
+
+                                            <option value="Delivered"
+                                                {% if parcel.status == "Delivered" %}selected{% endif %}>
+                                                Delivered
+                                            </option>
+                                        </select>
+
+                                        <button type="submit" class="update-btn">
+                                            Update
+                                        </button>
+                                    </form>
+                                </td>
+
+                                <td>{{ parcel.booking_date }}</td>
+
+                                <td>
+                                    <a
+                                        href="{% url 'delete_parcel' parcel.id %}"
+                                        class="delete-btn"
+                                        onclick="return confirm('Are you sure you want to delete this parcel?')"
+                                    >
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="empty-message">
+                                    No parcels found.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+
+        </main>
     </div>
-
-    <div class="card-box">
-        <h3>Booked</h3>
-        <h2>{{ booked }}</h2>
-    </div>
-
-    <div class="card-box">
-        <h3>In Transit</h3>
-        <h2>{{ transit }}</h2>
-    </div>
-
-    <div class="card-box">
-        <h3>Delivered</h3>
-        <h2>{{ delivered }}</h2>
-    </div>
-
-</div>
-
-<form method="GET" style="margin-bottom:20px;">
-
-    <input
-        type="text"
-        name="q"
-        placeholder="Search Tracking ID..."
-        value="{{ request.GET.q }}"
-        style="padding:10px;width:300px;border-radius:8px;border:1px solid #ccc;">
-
-    <button
-        type="submit"
-        class="signupBtn"
-        style="width:120px;height:42px;">
-        Search
-    </button>
-
-</form>
-
-<div class="table-section">
-
-<div class="table-scroll">
-
-<table>
-
-<tr>
-
-<th>Tracking ID</th>
-
-<th>Sender</th>
-
-<th>Receiver</th>
-
-<th>Status</th>
-
-<th>Date</th>
-
-<th>Action</th>
-
-</tr>
-
-{% for parcel in parcels %}
-
-<tr>
-
-<td>{{ parcel.tracking_id }}</td>
-
-<td>{{ parcel.sender_name }}</td>
-
-<td>{{ parcel.receiver_name }}</td>
-
-<td>
-
-<form method="POST" action="{% url 'update_status' parcel.id %}">
-
-{% csrf_token %}
-
-<select name="status">
-
-<option value="Booked"
-{% if parcel.status == "Booked" %}selected{% endif %}>
-Booked
-</option>
-
-<option value="In Transit"
-{% if parcel.status == "In Transit" %}selected{% endif %}>
-In Transit
-</option>
-
-<option value="Out for Delivery"
-{% if parcel.status == "Out for Delivery" %}selected{% endif %}>
-Out for Delivery
-</option>
-
-<option value="Delivered"
-{% if parcel.status == "Delivered" %}selected{% endif %}>
-Delivered
-</option>
-
-</select>
-
-<button class="signupBtn" style="width:120px;height:40px;margin-top:10px;">
-Update
-</button>
-
-</form>
-
-</td>
-
-<td>{{ parcel.booking_date }}</td>
-
-<td>
-
-<a href="{% url 'delete_parcel' parcel.id %}"
-onclick="return confirm('Are you sure you want to delete?')">
-
-<button class="track-btn">
-Delete
-</button>
-
-</a>
-
-</td>
-
-</tr>
-
-{% endfor %}
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 
 </body>
 </html>
