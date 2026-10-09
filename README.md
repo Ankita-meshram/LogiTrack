@@ -187,8 +187,7 @@ Example:
 
 * Dashboard
   
-  <img width="827" height="438" alt="image" src="https://github.com/user-attachments/assets/65a0c4fb-44a8-4959-90ae-fe0e367d5872" />
-
+  <img width="957" height="476" alt="image" src="https://github.com/user-attachments/assets/b583436e-90d1-4b0a-8142-838eefc24860" />
 
 ---
 
